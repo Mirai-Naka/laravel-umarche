@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\Auth\NewPasswordController;
 use App\Http\Controllers\admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\admin\Auth\RegisteredUserController;
 use App\Http\Controllers\admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\OwnersController;
 
 
 /*
@@ -25,6 +26,8 @@ use App\Http\Controllers\admin\Auth\VerifyEmailController;
 Route::get('/', function () {
     return view('admin.welcome');
 });
+
+Route::resource('owners', OwnersController::class)->middleware('auth:admin');
 
 //Laravel Breezeを入れると追加
 Route::get('/dashboard', function () {
