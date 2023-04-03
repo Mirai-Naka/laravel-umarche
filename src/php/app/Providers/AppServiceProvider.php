@@ -17,12 +17,21 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
+     * ページが読み込まれるたびに自動的に実行される
      * Bootstrap any application services.
      *
      * @return void
      */
     public function boot()
     {
-        //
+        //ownerから始まるURL
+        if (request()->is('owner*')) {
+            config(['session.cookie' => config('session.cookie_owner')]);
+        }
+
+        //adminから始まるURL
+        if (request()->is('adimn*')) {
+            config(['session.cookie' => config('session.cookie_admin')]);
+        }
     }
 }
